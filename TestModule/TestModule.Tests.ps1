@@ -7,9 +7,9 @@ Invoke-Pester -Script $path\TestModule.Tests.ps1
 
 Describe 'TestModule Test' {
 
+    Import-Module $PSScriptRoot\TestModule -Force
+    
     InModuleScope TestModule {
-
-        Import-Module $PSScriptRoot\TestModule -Force
 
         Context 'Strict Mode' {
 
