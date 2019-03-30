@@ -3445,7 +3445,7 @@ Invoke $params
                         $handle.powershell.Runspace.Dispose()
                     }
 
-                    if ($handle.Instance) {
+                    if ($handle.PsObject.Properties.Name -contains 'Instance') {
                         $handle.Instance.Dispose()
                     }
 
