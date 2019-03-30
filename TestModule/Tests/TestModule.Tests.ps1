@@ -5,12 +5,12 @@ Invoke-Pester -Script $path\Utility.Tests.ps1
 #>
 
 
-Describe 'Utility Module Test' {
+Describe 'TestModule Test' {
 
-    InModuleScope Utility {
+    InModuleScope TestModule {
 
-        Remove-Module Utility -Force -ErrorAction Ignore
-        Import-Module $PSScriptRoot\Utility -Force
+        Remove-Module TestModule -Force -ErrorAction Ignore
+        Import-Module $PSScriptRoot\TestModule -Force
 
         Context 'Strict Mode' {
 
