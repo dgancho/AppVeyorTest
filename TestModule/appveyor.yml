@@ -4,4 +4,4 @@ skip_commits:
   message: /updated readme.*|update readme.*s/
 
 test_script:
-  - ps: . .\TestModule.Tests.ps1
+  - ps: TestModule.Tests.ps1
