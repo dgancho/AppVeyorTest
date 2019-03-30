@@ -10,15 +10,12 @@
         }
 
         It 'Invoke-Parallel Test 2' {
-            $script = {
-                Invoke-Parallel -ParameterSet @(
-                    @{target = 'google.com'}
-                ) -ScriptBlock {
-                    param ($target)
-                    [net.dns]::GetHostByName($target).AddressList[0]
-                }
-            }
-            $script | Should Not throw
+            Invoke-Parallel -ParameterSet @(
+                @{target = 'google.com'}
+            ) -ScriptBlock {
+                param ($target)
+                [net.dns]::GetHostByName($target).AddressList[0]
+            } | Should BeOfType IpAddress
         }
     }
 }
