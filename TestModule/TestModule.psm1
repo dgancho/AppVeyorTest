@@ -1257,3 +1257,43 @@ Invoke $params
         Clear-Garbage
     }
 }
+
+
+function Clear-Garbage {
+<#
+.SYNOPSIS
+   Invoke garbage collection to release unused memory.
+   This is an expensive operation, takes about a second.
+   Potentially may result in deadlocks. Don't overuse.
+
+.DESCRIPTION
+    Author  : Dmitry Gancho
+    Created : 11/8/2018
+    Updated : 11/8/2018
+
+.EXAMPLE
+    Clear-Garbage -Verbose
+
+.LINK
+    https://stackoverflow.com/questions/12265598/is-correct-to-use-gc-collect-gc-waitforpendingfinalizers
+#>
+
+    [CmdletBinding()]
+
+    param ()
+
+    [uint32]$memMB = [System.GC]::GetTotalMemory($false) / 1MB
+    "Garbage collection: Memory before $memMB MB" | Write-Verbose
+
+    $sw = [System.Diagnostics.Stopwatch]::StartNew()
+
+    [System.Runtime.GCSettings]::LargeObjectHeapCompactionMode = [System.Runtime.GCLargeObjectHeapCompactionMode]::CompactOnce
+    [System.GC]::Collect([System.GC]::MaxGeneration, [System.GCCollectionMode]::Forced)
+    [System.GC]::WaitForPendingFinalizers()
+    [System.GC]::Collect()
+
+    [uint32]$memMB = [System.GC]::GetTotalMemory($true) / 1MB
+    "Garbage collection: Memory after  $memMB MB" | Write-Verbose
+    "Garbage collection: Cleanup took  {0} ms" -f $sw.ElapsedMilliseconds | Write-Verbose
+}
+
