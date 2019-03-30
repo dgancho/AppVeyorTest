@@ -1,7 +1,7 @@
 ﻿
 <#
-$path = "$HOME\Documents\AppVeyorTest\Utility"
-Invoke-Pester -Script $path\Utility.Tests.ps1
+$path = "$HOME\Documents\AppVeyorTest\TestModule"
+Invoke-Pester -Script $path\TestModule.Tests.ps1
 #>
 
 
