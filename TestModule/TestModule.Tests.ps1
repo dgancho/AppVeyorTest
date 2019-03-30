@@ -9,7 +9,6 @@ Describe 'TestModule Test' {
 
     InModuleScope TestModule {
 
-        Remove-Module TestModule -Force -ErrorAction Ignore
         Import-Module $PSScriptRoot\TestModule -Force
 
         Context 'Strict Mode' {
