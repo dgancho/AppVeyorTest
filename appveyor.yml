@@ -10,7 +10,6 @@ test_script:
 - ps: . .\TestModule\TestModule.Tests.ps1
 
 artifacts:
-  name: TEST
 - path: '*'
 - path: '\TestModule\*'
 
