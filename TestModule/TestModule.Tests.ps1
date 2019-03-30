@@ -36,6 +36,3 @@ Describe 'TestModule Test' {
         }
     }
 }
-
-Reset-PsPrompt
-
