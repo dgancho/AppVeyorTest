@@ -4,7 +4,13 @@ skip_commits:
   message: /updated readme.*|update readme.*s/
 
 install:
-  - cinst pester -y
+- cinst pester -y
 
 test_script:
-  - ps: . .\TestModule\TestModule.Tests.ps1
+- ps: . .\TestModule\TestModule.Tests.ps1
+
+artifacts:
+  name: TEST
+- path: '*'
+- path: '\TestModule\*'
+
